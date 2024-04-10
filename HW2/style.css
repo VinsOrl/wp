@@ -40,7 +40,7 @@ body {
   100% {
     filter: hue-rotate(360deg);
   }
-}(for rgb animated purposed)
+}/*(for rgb animated purposed)*/
 
 .form-wrapper {
   display: flex;
