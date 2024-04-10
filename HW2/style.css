@@ -36,7 +36,7 @@ body {
   animation: animate 1s linear infinite;
 }
 
-@keyframes animate {
+/*@keyframes animate {
   100% {
     filter: hue-rotate(360deg);
   }
