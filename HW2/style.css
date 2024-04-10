@@ -36,11 +36,11 @@ body {
   animation: animate 1s linear infinite;
 }
 
-/*@keyframes animate {
+@keyframes animate {
   100% {
     filter: hue-rotate(360deg);
   }
-}(for rgb animated purposed)*/
+}(for rgb animated purposed)
 
 .form-wrapper {
   display: flex;
