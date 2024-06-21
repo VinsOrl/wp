@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto-Moving Button</title>
+    <style>
+      #myButton {
+        position: absolute;
+        width: 100px;
+        height: 50px;
+        background-color: lightblue;
+        border: none;
+        cursor: pointer;
+        transition: transform 1s;
+        motion: none;
+        font-weight: bolder;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="myButton">CATCH ME!</button>
+
+    <script>
+      const button = document.getElementById("myButton");
+      function moveButton() {
+        const screenWidth = window.innerWidth - button.offsetWidth;
+        const screenHeight = window.innerHeight - button.offsetHeight;
+
+        const randomX = Math.floor(Math.random() * screenWidth);
+        const randomY = Math.floor(Math.random() * screenHeight);
+
+        button.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      }
+
+      setInterval(moveButton, 600);
+    </script>
+  </body>
+</html>
