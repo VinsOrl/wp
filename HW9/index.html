@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Canvas Drawing</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      canvas {
+        border: 1px solid black;
+        margin-top: 10px;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <label for="shape">Shape:</label>
+      <select id="shape">
+        <option value="rectangle">Rectangle</option>
+        <option value="circle">Circle</option>
+        <option value="line">Line</option>
+        <option value="triangle">Triangle</option>
+        <option value="polygon">Polygon</option>
+      </select>
+      <label for="color">Color:</label>
+      <input type="color" id="color" value="#000000" />
+      <button id="clear">Clear</button>
+    </div>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+      const shapeSelect = document.getElementById("shape");
+      const colorInput = document.getElementById("color");
+      const clearButton = document.getElementById("clear");
+
+      let drawing = false;
+      let startX, startY;
+      const shapes = [];
+
+      canvas.addEventListener("mousedown", (e) => {
+        drawing = true;
+        [startX, startY] = [e.offsetX, e.offsetY];
+      });
+
+      canvas.addEventListener("mousemove", (e) => {
+        if (drawing) {
+          const [endX, endY] = [e.offsetX, e.offsetY];
+          drawGuideline(
+            shapeSelect.value,
+            colorInput.value,
+            startX,
+            startY,
+            endX,
+            endY
+          );
+        }
+      });
+
+      canvas.addEventListener("mouseup", (e) => {
+        if (drawing) {
+          drawing = false;
+          const [endX, endY] = [e.offsetX, e.offsetY];
+          shapes.push({
+            shape: shapeSelect.value,
+            color: colorInput.value,
+            startX,
+            startY,
+            endX,
+            endY,
+          });
+          redrawCanvas();
+        }
+      });
+
+      clearButton.addEventListener("click", () => {
+        shapes.length = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+
+      function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        shapes.forEach((s) =>
+          drawShape(s.shape, s.color, s.startX, s.startY, s.endX, s.endY)
+        );
+      }
+
+      function drawShape(shape, color, x1, y1, x2, y2) {
+        ctx.fillStyle = ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+
+        if (shape === "rectangle") {
+          ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+        } else if (shape === "circle") {
+          ctx.arc(x1, y1, Math.hypot(x2 - x1, y2 - y1), 0, Math.PI * 2);
+          ctx.fill();
+        } else if (shape === "line") {
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        } else if (shape === "triangle") {
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.lineTo(x1, y2);
+          ctx.closePath();
+          ctx.fill();
+        } else if (shape === "polygon") {
+          const sides = 6,
+            angle = (2 * Math.PI) / sides,
+            radius = Math.hypot(x2 - x1, y2 - y1);
+          for (let i = 0; i < sides; i++) {
+            const x = x1 + radius * Math.cos(i * angle);
+            const y = y1 + radius * Math.sin(i * angle);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        ctx.stroke();
+      }
+
+      function drawGuideline(shape, color, x1, y1, x2, y2) {
+        redrawCanvas();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([5, 3]);
+        drawShape(shape, color, x1, y1, x2, y2);
+        ctx.setLineDash([]);
+      }
+    </script>
+  </body>
+</html>
