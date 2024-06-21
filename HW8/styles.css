@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-image: linear-gradient(
+      rgba(134, 84, 84, 0.75),
+      rgba(0, 0, 0, 0.75)
+    ),
+    url("ult.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 60px 0;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3em;
+}
+
+header p {
+  font-size: 1.2em;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 17, 0);
+  padding: 10px 0;
+}
+
+nav a {
+  color: rgb(255, 255, 255);
+  padding: 0 15px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.side,
+.main {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.side {
+  flex: 1;
+  min-width: 150px;
+}
+
+.main {
+  flex: 2;
+  min-width: 300px;
+}
+
+@media screen and (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}
