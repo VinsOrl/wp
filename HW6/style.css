@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+.top-nav {
+  position: absolute;
+  width: 100%;
+  background: #222;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  height: 35px;
+  top: 0;
+}
+
+header {
+  position: fixed;
+}
+
+.hamburger-container {
+  position: fixed;
+  z-index: 2;
+}
+
+.hamburger-menu {
+  width: 35px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 25px;
+  margin-left: 10px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.hamburger-menu .bar {
+  height: 4px;
+  width: 100%;
+  background-color: white;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -180px;
+  width: 250px;
+  height: 100%;
+  background: #222;
+  border-radius: 0 5px 5px 0;
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.nav-menu li {
+  padding: 10px 20px;
+}
+
+.nav-menu li a {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.nav-menu li:hover {
+  background: #555;
+}
+
+.hamburger-container:hover ~ .nav-menu,
+.nav-menu:hover {
+  left: 0;
+}
+
+main {
+  text-align: center;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.about-me-btn {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.5s, transform 0.5s;
+}
+
+.about-me-btn a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.about-me-btn:hover a {
+  color: rgba(255, 255, 255, 0.836);
+}
+
+.about-me-btn:hover {
+  background-color: #444;
+  transform: scale(1.2);
+}
