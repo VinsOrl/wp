@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whack-a-Mole Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Whack A Mole</h1>
+      <p>Score: <span id="score">0</span></p>
+      <p>High Score: <span id="high-score">0</span></p>
+      <p>Time Left: <span id="time-left">30</span> seconds</p>
+      <div>
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <button id="start-button">Start Game</button>
+      <button id="pause-button" disabled>Pause</button>
+      <button id="resume-button" disabled>Resume</button>
+    </header>
+    <main>
+      <div class="grid">
+        <div class="hole" id="hole1"></div>
+        <div class="hole" id="hole2"></div>
+        <div class="hole" id="hole3"></div>
+        <div class="hole" id="hole4"></div>
+        <div class="hole" id="hole5"></div>
+        <div class="hole" id="hole6"></div>
+        <div class="hole" id="hole7"></div>
+        <div class="hole" id="hole8"></div>
+        <div class="hole" id="hole9"></div>
+      </div>
+    </main>
+    <audio id="hit-sound" src="hit.mp3"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>
